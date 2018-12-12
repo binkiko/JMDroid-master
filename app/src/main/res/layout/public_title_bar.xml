@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/toolbar_container"
+    android:background="@color/colorWhite"
+    android:layout_width="match_parent"
+    android:layout_height="?attr/actionBarSize">
+
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:singleLine="true"
+            android:textColor="@color/colorPrimary"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            tools:text="标题" />
+        <ImageView
+            android:id="@+id/left_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:paddingBottom="10dp"
+            android:paddingEnd="10dp"
+            android:paddingStart="23dp"
+            android:paddingTop="10dp"
+            android:src="@drawable/ic_back"
+            android:adjustViewBounds="true"
+            android:visibility="gone"
+            tools:visibility="visible" />
+    </RelativeLayout>

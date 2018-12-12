@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+    <include android:id="@+id/top" layout="@layout/include_base"/>
+    <ScrollView
+        android:layout_below="@+id/top"
+        android:layout_above="@+id/bottom_linear"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <RelativeLayout
+                android:id="@+id/surfaceview"
+                android:layout_width="match_parent"
+                android:layout_height="224dp">
+                <SurfaceView
+                    android:layout_width="match_parent"
+                    android:layout_height="224dp"
+                    />
+                <TextView
+                    android:id="@+id/tv_course_next"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:text="下节直播:02工程线性管理"
+                    android:textSize="20sp"
+                    android:textColor="@color/material_white"/>
+                <TextView
+                    android:layout_below="@+id/tv_course_next"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_marginTop="@dimen/dp_10"
+                    android:text="8月6日 20:00 预约直播"
+                    android:textSize="16sp"
+                    android:textColor="@color/material_white"/>
+            </RelativeLayout>
+
+            <com.androidkun.xtablayout.XTabLayout
+                android:layout_marginTop="-10dp"
+                android:id="@+id/xTablayout"
+                android:layout_below="@+id/surfaceview"
+                android:layout_width="match_parent"
+                android:layout_height="39dp"
+                android:background="@color/colorWhite"
+                app:xTabIndicatorColor="@color/colorAccent"
+                app:xTabIndicatorHeight="2dp"
+                app:tabGravity="fill"
+                app:xTabMode="scrollable"
+                app:xTabSelectedTextColor="@color/colorAccent"
+                app:xTabSelectedTextSize="18sp"
+                app:xTabTextColor="@color/colorPrompt2"
+                app:xTabTextSize="16sp" />
+            <android.support.v4.view.ViewPager
+                android:id="@+id/view_pager"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/xTablayout"/>
+        </RelativeLayout>
+    </ScrollView>
+
+    <include layout="@layout/include_bottom"/>
+
+
+</RelativeLayout>

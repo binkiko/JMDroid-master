@@ -1,0 +1,11 @@
+include ':app', ':core-framework'
+
+
+//module
+include ':module_webview'
+
+//libs
+include ':library_stickyhead'
+include ':library_badge'
+
+

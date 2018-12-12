@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    >
+    <LinearLayout
+        android:id="@+id/bottom_linear"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true">
+        <TextView
+            android:id="@+id/iv_collect"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:drawableLeft="@mipmap/icon_rectangle"
+            android:padding="@dimen/dp_10"
+            android:text="收藏"
+            android:gravity="center"
+            />
+
+        <TextView
+            android:id="@+id/iv_back"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:drawableLeft="@mipmap/icon_collect"
+            android:padding="@dimen/dp_10"
+            android:text="想学"
+            android:gravity="center"
+            />
+
+        <TextView
+            android:id="@+id/tv_lable"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:background="@color/colorAccent"
+            android:text="立即购买"
+            android:textColor="@color/material_white"
+            android:textSize="14sp"
+            android:gravity="center"
+            android:layout_centerInParent="true"/>
+
+    </LinearLayout>
+
+
+
+</RelativeLayout>
