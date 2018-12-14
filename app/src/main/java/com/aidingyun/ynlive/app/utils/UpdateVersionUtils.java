@@ -87,17 +87,15 @@ public class UpdateVersionUtils implements HttpManager {
         for (ServicepathModel.ServiceDataBean serviceDataBean:ABaseService.servicepathModel.service_data) {
             if (serviceDataBean.getService_name().equals(name)){
                 url = serviceDataBean.getService_path();
-                Log.e("SplashActivity","url++++++++++++++++"+url);
+                Log.e("postByName","url++++++++++++++++"+url);
             }
         }
         HttpHeaders headers = new HttpHeaders();
         if (ABaseService.islogin) {
             headers.put("Authorization", ABaseService.token);
-            siteid = ABaseService.siteid;
-        }else{
-            siteid = ABaseService.preferences.getString("siteid","");
         }
-
+            siteid = ABaseService.siteid;
+        Log.e("postByName",ABaseService.islogin+"url++++++++++++++++"+params.toString()+"siteid="+siteid);
         OkGo.<String>post(url)
                 .tag(this)
                 .headers(headers)

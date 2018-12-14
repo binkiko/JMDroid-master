@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.zhy.autolayout.AutoRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".mvp.ui.activity.ordermanager.OrderManagerActivity">
+    <include android:id="@+id/title" layout="@layout/include_leftbar"/>
+    <com.zhy.autolayout.AutoLinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/title"
+        android:orientation="vertical">
+        <com.androidkun.xtablayout.XTabLayout
+            android:id="@+id/xTablayout"
+            android:layout_width="match_parent"
+            android:layout_height="39dp"
+            android:background="@color/colorWhite"
+            app:xTabIndicatorColor="@color/colorAccent"
+            app:xTabIndicatorHeight="2dp"
+            app:xTabIndicatorWidth="28dp"
+            app:xTabMode="scrollable"
+            app:xTabSelectedTextColor="@color/colorAccent"
+            app:xTabSelectedTextSize="18sp"
+            app:xTabTextColor="@color/colorPrompt2"
+            app:xTabTextSize="16sp" />
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/view_pager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </com.zhy.autolayout.AutoLinearLayout>
+
+</com.zhy.autolayout.AutoRelativeLayout>

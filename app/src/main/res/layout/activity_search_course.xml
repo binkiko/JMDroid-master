@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,7 +8,7 @@
     tools:context=".mvp.ui.activity.search.SearchCourseActivity">
     <include layout="@layout/include_toobar"/>
 
-    <LinearLayout
+    <com.zhy.autolayout.AutoLinearLayout
         android:id="@+id/no_input_course"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -18,13 +18,13 @@
         <com.aidingyun.ynlive.mvp.ui.widget.CustomScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-            <LinearLayout
+            <com.zhy.autolayout.AutoLinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
 
-        <RelativeLayout
+        <com.zhy.autolayout.AutoRelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <TextView
@@ -43,7 +43,7 @@
                 android:textSize="@dimen/sp_12"
                 android:padding="@dimen/dp_10"
                 android:layout_alignParentRight="true"/>
-        </RelativeLayout>
+        </com.zhy.autolayout.AutoRelativeLayout>
 
 
 
@@ -57,7 +57,7 @@
         </com.aidingyun.ynlive.mvp.ui.widget.GridViewForScrollView>
 
 
-        <RelativeLayout
+        <com.zhy.autolayout.AutoRelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <TextView
@@ -67,7 +67,7 @@
                 android:textSize="@dimen/sp_16"
                 android:padding="@dimen/dp_10"
                 android:textColor="#5C7799"/>
-        </RelativeLayout>
+        </com.zhy.autolayout.AutoRelativeLayout>
 
         <com.aidingyun.ynlive.mvp.ui.widget.GridViewForScrollView
             android:id="@+id/search_hot_grideview"
@@ -78,22 +78,22 @@
 
         </com.aidingyun.ynlive.mvp.ui.widget.GridViewForScrollView>
 
-            </LinearLayout>
+            </com.zhy.autolayout.AutoLinearLayout>
         </com.aidingyun.ynlive.mvp.ui.widget.CustomScrollView>
 
-    </LinearLayout>
+    </com.zhy.autolayout.AutoLinearLayout>
 
-    <RelativeLayout
+    <com.zhy.autolayout.AutoRelativeLayout
         android:id="@+id/input_course"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-        <LinearLayout
+        <com.zhy.autolayout.AutoLinearLayout
             android:id="@+id/screen"
             android:layout_width="match_parent"
             android:layout_height="38dp"
             android:orientation="horizontal">
-            <RelativeLayout
+            <com.zhy.autolayout.AutoRelativeLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1">
@@ -107,9 +107,9 @@
                     android:drawableRight="@drawable/icon_triangle"
                     android:textStyle="bold"
                     android:textColor="#172E4D"/>
-            </RelativeLayout>
+            </com.zhy.autolayout.AutoRelativeLayout>
 
-            <RelativeLayout
+            <com.zhy.autolayout.AutoRelativeLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1">
@@ -123,9 +123,9 @@
                     android:drawableRight="@drawable/icon_triangle"
                     android:textStyle="bold"
                     android:textColor="#172E4D"/>
-            </RelativeLayout>
+            </com.zhy.autolayout.AutoRelativeLayout>
 
-            <RelativeLayout
+            <com.zhy.autolayout.AutoRelativeLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1">
@@ -139,9 +139,9 @@
                     android:drawableRight="@drawable/icon_triangle"
                     android:textStyle="bold"
                     android:textColor="#172E4D"/>
-            </RelativeLayout>
+            </com.zhy.autolayout.AutoRelativeLayout>
 
-        </LinearLayout>
+        </com.zhy.autolayout.AutoLinearLayout>
 
         <View
             android:id="@+id/line"
@@ -166,14 +166,14 @@
 
         </com.scwang.smartrefresh.layout.SmartRefreshLayout>
 
-        <LinearLayout
+        <com.zhy.autolayout.AutoLinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@+id/line"
             android:orientation="vertical"
             >
 
-            <LinearLayout
+            <com.zhy.autolayout.AutoLinearLayout
                 android:id="@+id/screen_linear"
                 android:layout_width="match_parent"
                 android:layout_height="260dp"
@@ -187,9 +187,9 @@
                     android:layout_weight="1"
                     android:scrollbars="none">
                 </ListView>
-            </LinearLayout>
+            </com.zhy.autolayout.AutoLinearLayout>
 
-            <LinearLayout
+            <com.zhy.autolayout.AutoLinearLayout
                 android:id="@+id/plate_linear"
                 android:layout_width="match_parent"
                 android:layout_height="260dp"
@@ -201,6 +201,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:divider="@null"
                     android:scrollbars="none">
                 </ListView>
                 <ListView
@@ -208,7 +209,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:visibility="gone"
+                    android:divider="@null"
                     android:scrollbars="none">
                 </ListView>
                 <ListView
@@ -216,11 +217,11 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:visibility="gone"
+                    android:divider="@null"
                     android:scrollbars="none">
                 </ListView>
-            </LinearLayout>
-            <LinearLayout
+            </com.zhy.autolayout.AutoLinearLayout>
+            <com.zhy.autolayout.AutoLinearLayout
                 android:id="@+id/teach_linear"
                 android:layout_width="match_parent"
                 android:layout_height="260dp"
@@ -235,9 +236,9 @@
                     android:scrollbars="none">
                 </ListView>
 
-            </LinearLayout>
+            </com.zhy.autolayout.AutoLinearLayout>
 
-            <LinearLayout
+            <com.zhy.autolayout.AutoLinearLayout
                 android:id="@+id/transparent_linear"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -245,11 +246,11 @@
                 android:visibility="gone"
                 android:orientation="vertical">
 
-            </LinearLayout>
+            </com.zhy.autolayout.AutoLinearLayout>
 
-        </LinearLayout>
+        </com.zhy.autolayout.AutoLinearLayout>
 
-        <LinearLayout
+        <com.zhy.autolayout.AutoLinearLayout
 
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -258,9 +259,9 @@
             android:visibility="gone"
             android:background="@color/material_transparent_41">
 
-        </LinearLayout>
+        </com.zhy.autolayout.AutoLinearLayout>
 
-        <LinearLayout
+        <com.zhy.autolayout.AutoLinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
@@ -268,10 +269,10 @@
             android:visibility="gone"
             android:background="@color/material_transparent_41">
 
-        </LinearLayout>
+        </com.zhy.autolayout.AutoLinearLayout>
 
 
-    </RelativeLayout>
+    </com.zhy.autolayout.AutoRelativeLayout>
 
 
-</LinearLayout>
+</com.zhy.autolayout.AutoLinearLayout>

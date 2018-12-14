@@ -48,6 +48,7 @@ public class ActionSheetDialog {
         txtCancel = view.findViewById(R.id.txt_cancel);
         txtCancel.setOnClickListener(v -> dialog.dismiss());
 
+
         // 定义Dialog布局和参数
         dialog = new Dialog(context, R.style.ActionSheetDialogStyle);
         dialog.setContentView(view);

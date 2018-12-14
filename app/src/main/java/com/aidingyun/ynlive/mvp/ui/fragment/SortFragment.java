@@ -185,7 +185,7 @@ public class SortFragment extends BaseFragment<SortPresenter> implements SortCon
      * post请求方式
      */
 
-    public void getInfo(){
+    public  void getInfo(){
         Map<String, String> reqBody = new ConcurrentSkipListMap<>();
         reqBody.put("type", "app");
         updateVersionUtils.postByName(Global.GET_TYPE_SERVICE_NAME, reqBody, new HttpManager.Callback() {

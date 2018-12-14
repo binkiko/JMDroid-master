@@ -1,5 +1,4 @@
-include ':app', ':core-framework'
-
+include ':app', ':core-framework', ':dkplayer-java', ':dkplayer-ui'
 
 //module
 include ':module_webview'

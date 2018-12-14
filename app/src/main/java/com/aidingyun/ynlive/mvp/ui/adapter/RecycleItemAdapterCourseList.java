@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.aidingyun.ynlive.R;
 import com.aidingyun.ynlive.app.utils.LoadImage;
+import com.aidingyun.ynlive.mvp.model.entity.CourseDetailInfo;
 import com.aidingyun.ynlive.mvp.model.entity.HomeCourseModel;
 
 import java.util.List;
@@ -19,12 +20,12 @@ import java.util.List;
  */
 public class RecycleItemAdapterCourseList extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private Context context;
-    private List<HomeCourseModel.TypeDataBean.TypeCourseDataBean> results;
+    private List<CourseDetailInfo.SectionBean> sectionBeans;
 
 
-    public RecycleItemAdapterCourseList(Context context, List<HomeCourseModel.TypeDataBean.TypeCourseDataBean> results) {
+    public RecycleItemAdapterCourseList(Context context, List<CourseDetailInfo.SectionBean> sectionBeans) {
         this.context = context;
-        this.results = results;
+        this.sectionBeans = sectionBeans;
     }
 
     @Override
@@ -41,19 +42,28 @@ public class RecycleItemAdapterCourseList extends RecyclerView.Adapter<RecyclerV
 
     @Override
     public int getItemCount() {
-        return results.size();
+        return sectionBeans.size();
     }
 
 
     private void bind(ItemViewHolder holder, int position){
-        holder.tv_course_title.setText(results.get(position).getScore()+"分");
-        holder.tv_time.setText(results.get(position).getCollection());
+        holder.tv_course_title.setText(sectionBeans.get(position).getSection_title()+"分");
+        holder.tv_time.setText(sectionBeans.get(position).getSection_date()+"  "+sectionBeans.get(position).getSection_time());
+        holder.tv_no.setText("0"+position+1);
+        if (sectionBeans.get(position).getAllow().equals("0")){
+            holder.iv_lock.setVisibility(View.GONE);
+        }else if (sectionBeans.get(position).getAllow().equals("1")){
+            holder.iv_lock.setVisibility(View.VISIBLE);
+        }else if (sectionBeans.get(position).getAllow().equals("2")){
+            holder.iv_lock.setVisibility(View.GONE);
+        }
     }
 
     public class ItemViewHolder extends RecyclerView.ViewHolder {
         public TextView tv_no;
         public TextView tv_course_title;
         public TextView tv_time;
+        public ImageView iv_lock;
 
 
         public ItemViewHolder(View itemView) {
@@ -61,6 +71,7 @@ public class RecycleItemAdapterCourseList extends RecyclerView.Adapter<RecyclerV
             tv_no = (TextView) itemView.findViewById(R.id.tv_no);
             tv_course_title = (TextView) itemView.findViewById(R.id.tv_course_title);
             tv_time = (TextView) itemView.findViewById(R.id.tv_time);
+            iv_lock = (ImageView) itemView.findViewById(R.id.iv_lock);
         }
     }
 }

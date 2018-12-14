@@ -67,12 +67,12 @@ public class ScreenAdapter extends BaseAdapter {
 
         if (position == selectItem) {
 //            holder.tv_name.setBackgroundColor(Color.WHITE);
-            holder.tv_name.setTextColor(context.getResources().getColor(R.color.material_black));
-//            arg1.setBackgroundResource(R.drawable.tongcheng_all_bg01);
+            holder.tv_name.setTextColor(context.getResources().getColor(R.color.material_red_400));
+            convertView.setBackgroundColor(context.getResources().getColor(R.color.material_gray));
         } else {
-            convertView.setBackgroundColor(Color.parseColor("#f4f4f4"));
+            convertView.setBackgroundColor(context.getResources().getColor(R.color.material_white));
 //            holder.tv_name.setBackgroundColor(context.getResources().getColor(R.color.material_gray));
-            holder.tv_name.setTextColor(context.getResources().getColor(R.color.material_gray));
+            holder.tv_name.setTextColor(context.getResources().getColor(R.color.material_black));
         }
         holder.tv_name.setPadding(10,10,0,0);
         holder.tv_name.setGravity(Gravity.LEFT|Gravity.CENTER);

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.zhy.autolayout.AutoRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -8,7 +8,7 @@
 
     <include layout="@layout/public_title_bar" />
 
-    <LinearLayout
+    <com.zhy.autolayout.AutoLinearLayout
         android:id="@+id/view1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -21,7 +21,7 @@
         android:orientation="horizontal"
         android:weightSum="3">
 
-        <LinearLayout
+        <com.zhy.autolayout.AutoLinearLayout
             android:id="@+id/one"
             android:layout_width="0dp"
             android:layout_height="57dp"
@@ -40,9 +40,9 @@
                 android:id="@+id/one_money"
                 style="@style/tv_recharge_two"
                 android:text="￥6.00" />
-        </LinearLayout>
+        </com.zhy.autolayout.AutoLinearLayout>
 
-        <LinearLayout
+        <com.zhy.autolayout.AutoLinearLayout
             android:id="@+id/two"
             android:layout_width="0dp"
             android:layout_height="57dp"
@@ -62,9 +62,9 @@
                 android:id="@+id/two_money"
                 style="@style/tv_recharge_two"
                 android:text="￥15.00" />
-        </LinearLayout>
+        </com.zhy.autolayout.AutoLinearLayout>
 
-        <LinearLayout
+        <com.zhy.autolayout.AutoLinearLayout
             android:id="@+id/three"
             android:layout_width="0dp"
             android:layout_height="57dp"
@@ -84,11 +84,11 @@
                 android:id="@+id/three_money"
                 style="@style/tv_recharge_two"
                 android:text="￥30.00" />
-        </LinearLayout>
+        </com.zhy.autolayout.AutoLinearLayout>
 
-    </LinearLayout>
+    </com.zhy.autolayout.AutoLinearLayout>
 
-    <LinearLayout
+    <com.zhy.autolayout.AutoLinearLayout
         android:id="@+id/view2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -101,7 +101,7 @@
         android:orientation="horizontal"
         android:weightSum="3">
 
-        <LinearLayout
+        <com.zhy.autolayout.AutoLinearLayout
             android:id="@+id/four"
             android:layout_width="0dp"
             android:layout_height="57dp"
@@ -120,9 +120,9 @@
                 android:id="@+id/four_money"
                 style="@style/tv_recharge_two"
                 android:text="￥40.00" />
-        </LinearLayout>
+        </com.zhy.autolayout.AutoLinearLayout>
 
-        <LinearLayout
+        <com.zhy.autolayout.AutoLinearLayout
             android:id="@+id/five"
             android:layout_width="0dp"
             android:layout_height="57dp"
@@ -142,9 +142,9 @@
                 android:id="@+id/five_money"
                 style="@style/tv_recharge_two"
                 android:text="￥50.00" />
-        </LinearLayout>
+        </com.zhy.autolayout.AutoLinearLayout>
 
-        <LinearLayout
+        <com.zhy.autolayout.AutoLinearLayout
             android:id="@+id/six"
             android:layout_width="0dp"
             android:layout_height="57dp"
@@ -164,9 +164,9 @@
                 android:id="@+id/six_money"
                 style="@style/tv_recharge_two"
                 android:text="￥60.00" />
-        </LinearLayout>
+        </com.zhy.autolayout.AutoLinearLayout>
 
-    </LinearLayout>
+    </com.zhy.autolayout.AutoLinearLayout>
 
     <TextView
         android:id="@+id/view3"
@@ -218,7 +218,7 @@
         android:textColor="@color/colorWhite"
         android:textSize="18sp" />
 
-    <RelativeLayout
+    <com.zhy.autolayout.AutoRelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/tv_recharge"
@@ -251,5 +251,5 @@
             android:gravity="center"
             android:text="周一至周五 10：00-19：00"
             android:textSize="10sp" />
-    </RelativeLayout>
-</RelativeLayout>
+    </com.zhy.autolayout.AutoRelativeLayout>
+</com.zhy.autolayout.AutoRelativeLayout>

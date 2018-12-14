@@ -71,9 +71,9 @@
             android:value="1920" />
 
         <!-- arms配置 -->
-        <meta-data
-            android:name="com.aidingyun.ynlive.app.GlobalConfiguration"
-            android:value="ConfigModule" />
+        <!-- <meta-data -->
+        <!-- android:name="com.aidingyun.ynlive.app.GlobalConfiguration" -->
+        <!-- android:value="ConfigModule" /> -->
 
         <activity
             android:name=".mvp.ui.activity.HobbyActivity"
@@ -84,13 +84,40 @@
         <activity
             android:name=".mvp.ui.activity.account.UpdatePhoneActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".mvp.ui.activity.account.UpdatePwdActivity" />
-        <activity android:name=".mvp.ui.activity.account.UpdateUserInfoActivity" />
-        <activity android:name=".mvp.ui.activity.account.RechargeActivity" />
-        <activity android:name=".mvp.ui.activity.account.MyGoldActivity" />
-        <activity android:name=".mvp.ui.activity.account.PayActivity" />
-        <activity android:name=".mvp.ui.activity.search.SearchCourseActivity" />
-        <activity android:name=".mvp.ui.activity.course_detail.CourseDetailActivity"></activity>
+        <activity
+            android:name=".mvp.ui.activity.account.UpdatePwdActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".mvp.ui.activity.account.UpdateUserInfoActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".mvp.ui.activity.account.RechargeActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".mvp.ui.activity.account.MyGoldActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".mvp.ui.activity.account.PayActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".mvp.ui.activity.search.SearchCourseActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".mvp.ui.activity.course_detail.CourseDetailActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:screenOrientation="portrait" />
+        <activity android:name=".mvp.ui.activity.course_detail.ConfirmOrderActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".mvp.ui.activity.ordermanager.OrderManagerActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:screenOrientation="portrait"></activity>
     </application>
 
 </manifest>

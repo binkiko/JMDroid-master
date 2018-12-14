@@ -79,7 +79,7 @@ public class CourseReferralFragment extends Fragment {
         if (arguments.getString("isLoad").equals("true")){
             tv_title.setText(ABaseService.courseDetailInfo.getData().getTitle());
             tv_start.setText(ABaseService.courseDetailInfo.getData().getScore());
-            tv_collent.setText(ABaseService.courseDetailInfo.getData().getCollection());
+            tv_collent.setText(ABaseService.courseDetailInfo.getData().getCollection()+"人在学");
             if (ABaseService.courseDetailInfo.getData().getAllow().equals("0")){
                 tv_price.setText("免费");
                 tv_unit.setVisibility(View.GONE);
@@ -89,7 +89,7 @@ public class CourseReferralFragment extends Fragment {
             }else if (ABaseService.courseDetailInfo.getData().getAllow().equals("2")){
                 tv_price.setText(ABaseService.courseDetailInfo.getData().getPrice());
             }
-            LoadImage.loadNormalImage(getActivity(),ABaseService.courseDetailInfo.getData().getPhoto(),circle_head);
+            LoadImage.loadCircleImage(getActivity(),ABaseService.courseDetailInfo.getData().getPhoto(),circle_head);
             tv_teach_name.setText(ABaseService.courseDetailInfo.getData().getReal_name());
             tv_technical.setText(ABaseService.courseDetailInfo.getData().getTitle());
             tv_context.setText(ABaseService.courseDetailInfo.getData().getContent());

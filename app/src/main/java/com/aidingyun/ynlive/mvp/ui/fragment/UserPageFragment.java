@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,19 +18,31 @@ import com.aidingyun.ynlive.R;
 import com.aidingyun.ynlive.app.inter.IndexRefresh;
 import com.aidingyun.ynlive.app.service.ABaseService;
 import com.aidingyun.ynlive.app.utils.LoadImage;
+import com.aidingyun.ynlive.app.utils.ToastUtils;
 import com.aidingyun.ynlive.app.utils.UpdateVersionUtils;
 import com.aidingyun.ynlive.di.component.DaggerUserPageComponent;
 import com.aidingyun.ynlive.di.module.UserPageModule;
+import com.aidingyun.ynlive.mvp.contract.Global;
 import com.aidingyun.ynlive.mvp.contract.UserPageContract;
+import com.aidingyun.ynlive.mvp.model.entity.CourseOrderInfo;
 import com.aidingyun.ynlive.mvp.presenter.UserPagePresenter;
 import com.aidingyun.ynlive.mvp.ui.activity.account.LoginActivity;
 import com.aidingyun.ynlive.mvp.ui.activity.account.MyGoldActivity;
 import com.aidingyun.ynlive.mvp.ui.activity.account.PersonalCenterActivity;
+import com.aidingyun.ynlive.mvp.ui.activity.ordermanager.OrderManagerActivity;
+import com.aidingyun.ynlive.mvp.ui.adapter.order.RecycleItemAdapterOrder;
 import com.aidingyun.ynlive.mvp.ui.widget.BadgeButton;
 import com.aidingyun.ynlive.mvp.ui.widget.CircleImageView;
+import com.google.gson.Gson;
 import com.jess.arms.base.BaseFragment;
 import com.jess.arms.di.component.AppComponent;
 import com.jess.arms.utils.ArmsUtils;
+import com.vector.update_app.HttpManager;
+
+import org.json.JSONObject;
+
+import java.util.Map;
+import java.util.concurrent.ConcurrentSkipListMap;
 
 import static com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade;
 import static com.jess.arms.utils.Preconditions.checkNotNull;
@@ -75,6 +88,8 @@ public class UserPageFragment extends BaseFragment<UserPagePresenter> implements
     private LinearLayout mSix;
     private LinearLayout mSeven;
     private LinearLayout mEight;
+    private TextView tv_balance;
+    private TextView tv_wealth;
     private UpdateVersionUtils updateVersionUtils = null;
 
     public static UserPageFragment newInstance() {
@@ -134,6 +149,8 @@ public class UserPageFragment extends BaseFragment<UserPagePresenter> implements
         mSeven.setOnClickListener(this);
         mEight = (LinearLayout) view.findViewById(R.id.eight);
         mEight.setOnClickListener(this);
+        tv_wealth = (TextView) view.findViewById(R.id.tv_wealth);
+        tv_balance = (TextView) view.findViewById(R.id.tv_balance);
         return view;
     }
 
@@ -144,6 +161,7 @@ public class UserPageFragment extends BaseFragment<UserPagePresenter> implements
 //            mNickname.setText(ABaseService.loginInfo.getUsername());
 //            mUserId.setText(ABaseService.loginInfo.getUserid());
 //        }
+
     }
 
     @Override
@@ -153,6 +171,7 @@ public class UserPageFragment extends BaseFragment<UserPagePresenter> implements
             LoadImage.loadCircleImage(getActivity(), ABaseService.loginInfo.getIcon(), mAvatar);
             mNickname.setText(ABaseService.loginInfo.getUsername());
             mUserId.setText(ABaseService.loginInfo.getUserid());
+            getAccount("user",ABaseService.loginInfo.getUserid());
         }else{
             LoadImage.loadCircleImagedefult(getActivity(), R.drawable.avatar_default, mAvatar);
             mNickname.setText("未登录");
@@ -189,6 +208,44 @@ public class UserPageFragment extends BaseFragment<UserPagePresenter> implements
 
     @Override
     public void killMyself() {
+
+    }
+
+
+    /**
+     *
+     * @param userid user：用户 organization：机构
+     * @param accountid  op=user，用户id。 op=organization，机构id。
+     */
+    private void getAccount(String userid,String accountid) {
+        Map<String, String> reqBody = new ConcurrentSkipListMap<>();
+        reqBody.put("op", userid);
+        reqBody.put("accountid", accountid);
+        updateVersionUtils.postByName(Global.GET_ACCOUNT_SERVICE_NAME, reqBody, new HttpManager.Callback() {
+            @Override
+            public void onResponse(String result) {
+                Log.e("NoPaymentFragment","result++++++++++++++++"+result);
+                try {
+                    JSONObject jsonObject = new JSONObject(result);
+                    String code = jsonObject.getString("code");
+                    if (code.equals("SUCCESS")){
+                        JSONObject data = jsonObject.getJSONObject("data");
+                        tv_wealth.setText(data.getString("wealth"));
+                        tv_balance.setText(data.getString("current_coin"));
+                    }else{
+                        ToastUtils.showError(getActivity(),jsonObject.getString("msg"));
+                    }
+                }catch (Exception e){
+                    e.getMessage();
+                }
+
+            }
+
+            @Override
+            public void onError(String error) {
+                Log.e("NoPaymentFragment","error++++++++++++++++"+error);
+            }
+        });
 
     }
 
@@ -285,6 +342,7 @@ public class UserPageFragment extends BaseFragment<UserPagePresenter> implements
             case R.id.four:
                 if (ABaseService.islogin) {
                     //todo 未登录----跳转登录界面、 已登录---跳转个人中心界面PersonalCenter
+                    OrderManagerActivity.start(getActivity());
                 } else {
                     startActivityForResult(new Intent(getActivity(),LoginActivity.class),Activity.RESULT_OK);
 //                LoginActivity.start(getActivity());

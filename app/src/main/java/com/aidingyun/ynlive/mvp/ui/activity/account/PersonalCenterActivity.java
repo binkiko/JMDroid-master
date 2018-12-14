@@ -116,7 +116,7 @@ public class PersonalCenterActivity extends BaseActivity implements View.OnClick
                 ABaseService.loginInfo = null;
                 ABaseService.islogin = false;
                 ABaseService.token = "";
-                ABaseService.siteid = "";
+//                ABaseService.siteid = "";
                 finish();
                 break;
             default:

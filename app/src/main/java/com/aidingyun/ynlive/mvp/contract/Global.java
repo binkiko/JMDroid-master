@@ -36,4 +36,10 @@ public class Global {
     public static String GET_TYPE_SERVICE_NAME = "com.iiding.common.type.type_select";//获取课程分类/兴趣爱好分类
     public static String GET_COURSE_SEARCH_SERVICE_NAME = "com.iiding.course.live_course_select";//课程搜索展示
     public static String GET_COURSE_DETAIL_SERVICE_NAME = "com.iiding.course.live_course_select_detail";//课程详情展示
+    public static String GET_COURSE_COMMENT_LIST_SERVICE_NAME = "com.iiding.common.evaluate.evaluate_select";//课程详情评论列表
+    public static String GET_COURSE_BUY_SERVICE_NAME = "com.iiding.order.create_course_order";//课程购买
+
+    public static String GET_COURSE_STUDY_SERVICE_NAME = "com.yenei.micro.uc.lesson";//课程我的学习列表、想学请求接口
+    public static String GET_ORDER_MANAGER_SERVICE_NAME = "com.iiding.user.order.order";//个人中心--订单管理
+    public static String GET_ACCOUNT_SERVICE_NAME = "com.iiding.common.count.asset_account";//个人中心--获取资产
 }

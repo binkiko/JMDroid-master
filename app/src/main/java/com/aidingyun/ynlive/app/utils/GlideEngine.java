@@ -2,6 +2,7 @@ package com.aidingyun.ynlive.app.utils;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;

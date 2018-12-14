@@ -123,6 +123,12 @@
     <style name="checkBoxPayStyle">
         <item name="android:button">@drawable/rb_choose_sex</item>
     </style>
+    <style name="checkBoxCollectStyle">
+        <item name="android:button">@drawable/collect_checkbox_style</item>
+    </style>
+    <style name="checkBoxStudyStyle">
+        <item name="android:button">@drawable/study_checkbox_style</item>
+    </style>
     <style name="MyTabLayoutTextAppearance" parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
         <item name="android:textSize">18sp</item>
         <item name="android:textColor">@color/colorWhite</item>

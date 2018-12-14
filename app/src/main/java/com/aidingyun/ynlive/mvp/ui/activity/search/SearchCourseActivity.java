@@ -28,13 +28,18 @@ import com.aidingyun.ynlive.R;
 import com.aidingyun.ynlive.app.greendao.GreenDaoHelper;
 import com.aidingyun.ynlive.app.greendao.UserDao;
 import com.aidingyun.ynlive.app.greendao.model.User;
+import com.aidingyun.ynlive.app.service.ABaseService;
 import com.aidingyun.ynlive.app.utils.ToastUtils;
 import com.aidingyun.ynlive.app.utils.UpdateVersionUtils;
 import com.aidingyun.ynlive.mvp.contract.Global;
+import com.aidingyun.ynlive.mvp.model.entity.CourseClassificationModel;
 import com.aidingyun.ynlive.mvp.model.entity.ScreenModel;
 import com.aidingyun.ynlive.mvp.model.entity.SearchCourseModel;
 import com.aidingyun.ynlive.mvp.ui.adapter.RecycleItemAdapterTypeCourse;
 import com.aidingyun.ynlive.mvp.ui.adapter.ScreenAdapter;
+import com.aidingyun.ynlive.mvp.ui.adapter.SearchScreenFirstAdapter;
+import com.aidingyun.ynlive.mvp.ui.adapter.SearchScreenSecondAdapter;
+import com.aidingyun.ynlive.mvp.ui.adapter.SearchScreenThirdAdapter;
 import com.aidingyun.ynlive.mvp.ui.adapter.SearchViewGreenDaoAdapter;
 import com.aidingyun.ynlive.mvp.ui.widget.GridViewForScrollView;
 import com.google.gson.Gson;
@@ -111,15 +116,29 @@ public class SearchCourseActivity extends BaseActivity implements View.OnClickLi
     SearchViewGreenDaoAdapter adapter;
     SearchViewGreenDaoAdapter hotAdapter;
     RecycleItemAdapterTypeCourse courseAdapter;
+
+
+    SearchScreenFirstAdapter searchScreenFirstAdapter;
+    SearchScreenSecondAdapter searchScreenSecondAdapter;
+    SearchScreenThirdAdapter searchScreenThirdAdapter;
     UserDao userDao;
     List<User> list;
     List<User> hotlist = new ArrayList<>();
     List<ScreenModel> screenModels = new ArrayList<>();
     List<ScreenModel> teachModels = new ArrayList<>();
     List<SearchCourseModel.ListBean> results = new ArrayList<>();
+    List<CourseClassificationModel.DataBean> firstdataBeans = new ArrayList<>();
+    List<CourseClassificationModel.DataBean.TypeDataBeanX> scenddataBeans = new ArrayList<>();
+    List<CourseClassificationModel.DataBean.TypeDataBeanX.TypeDataBean> thirddataBeans = new ArrayList<>();
     String[] names = {"stetch", "直播", "免费", "PHP", "C", "C++", "NodeJs", "Hexo", "Android"};
     String[] comprehensive = {"综合排序", "好评率排序", "人气排序", "价格最低", "价格最高", "免费"};
     String[] teaching = {"全部", "直播", "人气排序", "点播", "一对一咨询", "付费问答"};
+
+
+    String type;
+    String typeid;
+     String second_typeid;
+     String third_typeid;
 
     /**
      *tv_comprehensive_ranking 综合排序
@@ -163,6 +182,61 @@ public class SearchCourseActivity extends BaseActivity implements View.OnClickLi
         screen_listviewf = findViewById(R.id.screen_listviewf);
         screen_listviews = findViewById(R.id.screen_listviews);
         teach_listview = findViewById(R.id.teach_listview);
+
+        firstdataBeans = ABaseService.courseClassificationModel.getData();
+        typeid = firstdataBeans.get(0).getTypeid();
+        scenddataBeans = firstdataBeans.get(0).getType_data();
+        second_typeid = scenddataBeans.get(0).getTypeid();
+        thirddataBeans = scenddataBeans.get(0).getType_data();
+        searchScreenFirstAdapter = new SearchScreenFirstAdapter(this,firstdataBeans);
+        screen_listview.setAdapter(searchScreenFirstAdapter);
+        searchScreenSecondAdapter = new SearchScreenSecondAdapter(this,scenddataBeans);
+        screen_listviewf.setAdapter(searchScreenSecondAdapter);
+        searchScreenThirdAdapter = new SearchScreenThirdAdapter(this,thirddataBeans);
+        screen_listviews.setAdapter(searchScreenThirdAdapter);
+        screen_listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                searchScreenFirstAdapter.setSelectItem(position);
+                searchScreenFirstAdapter.notifyDataSetInvalidated();
+                scenddataBeans = firstdataBeans.get(position).getType_data();
+                typeid = firstdataBeans.get(position).getTypeid();
+                searchScreenSecondAdapter = new SearchScreenSecondAdapter(SearchCourseActivity.this,scenddataBeans);
+                screen_listviewf.setAdapter(searchScreenSecondAdapter);
+                searchScreenSecondAdapter.notifyDataSetChanged();
+                thirddataBeans = scenddataBeans.get(0).getType_data();
+                searchScreenThirdAdapter = new SearchScreenThirdAdapter(SearchCourseActivity.this,thirddataBeans);
+                screen_listviews.setAdapter(searchScreenThirdAdapter);
+                searchScreenThirdAdapter.notifyDataSetInvalidated();
+            }
+        });
+
+        screen_listviewf.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                searchScreenSecondAdapter.setSelectItem(position);
+                searchScreenSecondAdapter.notifyDataSetInvalidated();
+                thirddataBeans = scenddataBeans.get(position).getType_data();
+                second_typeid = scenddataBeans.get(position).getTypeid();
+                searchScreenThirdAdapter = new SearchScreenThirdAdapter(SearchCourseActivity.this,thirddataBeans);
+                screen_listviews.setAdapter(searchScreenThirdAdapter);
+                searchScreenThirdAdapter.notifyDataSetInvalidated();
+            }
+        });
+
+        screen_listviews.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                searchScreenThirdAdapter.setSelectItem(position);
+                searchScreenThirdAdapter.notifyDataSetInvalidated();
+                third_typeid = thirddataBeans.get(position).getTypeid();
+                searchCourseList("","",typeid,second_typeid,third_typeid,thirddataBeans.get(position).getType_name(),"","","","");
+            }
+        });
+
+
+
+
 
         tv_comprehensive_ranking = findViewById(R.id.tv_comprehensive_ranking);
         tv_comprehensive_ranking.setOnClickListener(this);
@@ -433,6 +507,8 @@ public class SearchCourseActivity extends BaseActivity implements View.OnClickLi
                         courseAdapter = new RecycleItemAdapterTypeCourse(SearchCourseActivity.this,results);
                         recycler_view.setAdapter(courseAdapter);
                     }else{
+                        results.clear();
+                        courseAdapter.notifyDataSetChanged();
                         ToastUtils.showError(SearchCourseActivity.this,jsonObject.getString("msg"));
                     }
                 }catch (Exception e){

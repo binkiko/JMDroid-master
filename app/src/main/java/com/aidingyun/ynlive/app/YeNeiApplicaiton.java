@@ -5,17 +5,26 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.multidex.MultiDexApplication;
+import android.util.Log;
 
 import com.aidingyun.ynlive.R;
 import com.aidingyun.ynlive.app.greendao.DaoMaster;
 import com.aidingyun.ynlive.app.greendao.SQLiteOpenHelper;
 import com.aidingyun.ynlive.app.service.ABaseService;
+import com.aidingyun.ynlive.app.utils.LoadImage;
 import com.aidingyun.ynlive.app.utils.ProcessUtils;
+import com.aidingyun.ynlive.app.utils.UpdateVersionUtils;
 import com.aidingyun.ynlive.component.app.GlobalAppProxy;
 import com.aidingyun.ynlive.component.app.GlobalContext;
+import com.aidingyun.ynlive.mvp.contract.Global;
 import com.aidingyun.ynlive.mvp.model.entity.CourseClassificationModel;
 import com.aidingyun.ynlive.mvp.model.entity.LoginInfo;
+import com.aidingyun.ynlive.mvp.ui.adapter.HomeAdapter;
+import com.aidingyun.ynlive.mvp.ui.adapter.MenuAdapter;
+import com.aidingyun.ynlive.mvp.ui.fragment.SortFragment;
 import com.billy.cc.core.component.CC;
+import com.bumptech.glide.annotation.GlideModule;
+import com.bumptech.glide.module.AppGlideModule;
 import com.github.yuweiguocn.library.greendao.MigrationHelper;
 import com.google.gson.Gson;
 import com.jess.arms.base.App;
@@ -36,7 +45,12 @@ import com.lzy.okgo.model.HttpHeaders;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.footer.ClassicsFooter;
 import com.scwang.smartrefresh.layout.header.ClassicsHeader;
+import com.vector.update_app.HttpManager;
 
+import org.json.JSONObject;
+
+import java.util.Map;
+import java.util.concurrent.ConcurrentSkipListMap;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 
@@ -46,7 +60,7 @@ public class YeNeiApplicaiton extends MultiDexApplication implements App {
     private AppLifecycles mAppDelegate;
     private SQLiteOpenHelper helper;
     private DaoMaster master;
-
+    private UpdateVersionUtils updateVersionUtils = null;
 
     /**
      * 这里会在 {@link BaseApplication#onCreate} 之前被调用,可以做一些较早的初始化
@@ -68,17 +82,17 @@ public class YeNeiApplicaiton extends MultiDexApplication implements App {
         super.onCreate();
         if (mAppDelegate != null)
             this.mAppDelegate.onCreate(this);
+        updateVersionUtils = new UpdateVersionUtils();
         ABaseService.preferences = getApplicationContext().getSharedPreferences(getPackageName(),Context.MODE_PRIVATE);
         ABaseService.islogin = ABaseService.preferences.getBoolean("islogin",false);
-
-        if (ABaseService.islogin) {
-            ABaseService.siteid = ABaseService.preferences.getString("siteid", "");
-            ABaseService.token = ABaseService.preferences.getString("token","");
             Gson gson = new Gson();
-            String result = ABaseService.preferences.getString("userinfo","");
+            ABaseService.siteid = ABaseService.preferences.getString("siteid", "");
             String category = ABaseService.preferences.getString("category","");
-            ABaseService.loginInfo = gson.fromJson(result, LoginInfo.class);
             ABaseService.courseClassificationModel = gson.fromJson(category, CourseClassificationModel.class);
+        if (ABaseService.islogin) {
+            ABaseService.token = ABaseService.preferences.getString("token","");
+            String result = ABaseService.preferences.getString("userinfo","");
+            ABaseService.loginInfo = gson.fromJson(result, LoginInfo.class);
         }
         updateDB();
         CC.enableVerboseLog(true);
@@ -244,4 +258,5 @@ public class YeNeiApplicaiton extends MultiDexApplication implements App {
             return new ClassicsFooter(context).setDrawableSize(20);
         });
     }
+
 }

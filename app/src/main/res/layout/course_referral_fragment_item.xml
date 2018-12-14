@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.zhy.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools">
-    <ScrollView
+    <com.jess.arms.widget.autolayout.AutoScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scrollbars="none">
-        <LinearLayout
+        <com.zhy.autolayout.AutoLinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="@dimen/dp_10"
@@ -19,7 +19,7 @@
                 android:textColor="@color/colorTitleTextview"
                 android:textSize="@dimen/sp_16"
                 android:id="@+id/tv_title" />
-            <LinearLayout
+            <com.zhy.autolayout.AutoLinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/tv_title"
@@ -39,8 +39,8 @@
                     android:layout_marginLeft="@dimen/dp_10"
                     android:textColor="@color/colorcontentTextview"
                     tools:text="0人在学"/>
-            </LinearLayout>
-            <LinearLayout
+            </com.zhy.autolayout.AutoLinearLayout>
+            <com.zhy.autolayout.AutoLinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
@@ -59,9 +59,9 @@
                     android:layout_height="wrap_content"
                     android:textColor="@color/colorRed"
                     android:text="金币"/>
-            </LinearLayout>
+            </com.zhy.autolayout.AutoLinearLayout>
 
-            <LinearLayout
+            <com.zhy.autolayout.AutoLinearLayout
                 android:orientation="horizontal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -72,7 +72,7 @@
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:src="@drawable/pic5" />
-                <RelativeLayout
+                <com.zhy.autolayout.AutoRelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="80dp"
                     android:layout_marginLeft="@dimen/dp_10">
@@ -92,11 +92,11 @@
                         tools:text="浙江大学计算机学院教授"
                         android:textSize="@dimen/sp_12"
                         android:textColor="@color/colorcontentTextview"/>
-                    <RelativeLayout
+                    <com.zhy.autolayout.AutoRelativeLayout
                         android:layout_below="@+id/tv_technical"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
-                        <RelativeLayout
+                        <com.zhy.autolayout.AutoRelativeLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/dp_10"
@@ -118,12 +118,12 @@
                                 android:textSize="20sp"
                                 android:src="@mipmap/page_icon_attention_pressed"
                                 />
-                        </RelativeLayout>
+                        </com.zhy.autolayout.AutoRelativeLayout>
 
-                    </RelativeLayout>
-                </RelativeLayout>
+                    </com.zhy.autolayout.AutoRelativeLayout>
+                </com.zhy.autolayout.AutoRelativeLayout>
 
-            </LinearLayout>
+            </com.zhy.autolayout.AutoLinearLayout>
 
             <TextView
                 android:id="@+id/tv_context"
@@ -132,7 +132,7 @@
                 android:layout_marginTop="20dp"
                 tools:text="课程介绍"
                 />
-        </LinearLayout>
-    </ScrollView>
+        </com.zhy.autolayout.AutoLinearLayout>
+    </com.jess.arms.widget.autolayout.AutoScrollView>
 
-</LinearLayout>
+</com.zhy.autolayout.AutoLinearLayout>

@@ -18,6 +18,7 @@ import com.aidingyun.ynlive.app.utils.ToastUtils;
 import com.aidingyun.ynlive.app.utils.UpdateUtils;
 import com.aidingyun.ynlive.app.utils.UpdateVersionUtils;
 import com.aidingyun.ynlive.mvp.contract.Global;
+import com.aidingyun.ynlive.mvp.model.entity.CourseClassificationModel;
 import com.aidingyun.ynlive.mvp.model.entity.ServicepathModel;
 import com.aidingyun.ynlive.mvp.model.api.Api;
 import com.google.gson.Gson;
@@ -28,6 +29,8 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.concurrent.ConcurrentSkipListMap;
 
 public class SplashActivity extends AppCompatActivity {
     //    public static final int DEFAULT_SKIP = BuildConfig.DEBUG ? 0 : 3000;//总计X秒后自动跳转MainActivity
@@ -98,9 +101,10 @@ public class SplashActivity extends AppCompatActivity {
                 try {
                     JSONObject jsonObject = new JSONObject(result);
                     String siteid = jsonObject.getString("siteid");
-
+                    ABaseService.siteid = siteid;
+                    Log.e("SplashActivity","siteid++++++++++++++++"+ABaseService.siteid);
                     SharedPreferences preferences = getSharedPreferences(getPackageName(),Context.MODE_PRIVATE);
-                    preferences.edit().putString("siteid",siteid);
+                    preferences.edit().putString("siteid",ABaseService.siteid);
                     preferences.edit().commit();
                     Gson gson = new Gson();
                     ABaseService.servicepathModel = gson.fromJson(result, ServicepathModel.class);
@@ -110,15 +114,15 @@ public class SplashActivity extends AppCompatActivity {
                         serviceDataBean1.setService_path(serviceDataBean.service_path);
                         serviceDataBeans.add(serviceDataBean1);
                     }
+                    getInfo();
+//                    for (int i = 0; i < ABaseService.servicepathModel.service_data.size(); i++) {
+//                        if (ABaseService.servicepathModel.service_data.get(i).service_name.equals(Global.LOGIN_SERVICE_NAME)){
+//                            String url = ABaseService.servicepathModel.service_data.get(i).service_path;
+//                            Log.e("SplashActivity","url++++++++++++++++"+url);
+//                        }
+//                    }
 
-                    for (int i = 0; i < ABaseService.servicepathModel.service_data.size(); i++) {
-                        if (ABaseService.servicepathModel.service_data.get(i).service_name.equals(Global.LOGIN_SERVICE_NAME)){
-                            String url = ABaseService.servicepathModel.service_data.get(i).service_path;
-                            Log.e("SplashActivity","url++++++++++++++++"+url);
-                        }
-                    }
 
-                    Log.e("SplashActivity","serviceDataBeans++++++++++++++++"+serviceDataBeans.size());
 //                    ToastUtils.show(SplashActivity.this,".......siteid="+siteid);
                 }catch (Exception e){
 
@@ -133,6 +137,34 @@ public class SplashActivity extends AppCompatActivity {
         });
 
 
+    }
+
+    public  void getInfo(){
+        Map<String, String> reqBody = new ConcurrentSkipListMap<>();
+        reqBody.put("type", "app");
+        updateVersionUtils.postByName(Global.GET_TYPE_SERVICE_NAME, reqBody, new HttpManager.Callback() {
+            @Override
+            public void onResponse(String result) {
+                Log.e("HomePageListFragment","updateVersionUtils++++++++++++++++"+result);
+                try {
+                    JSONObject jsonObject = new JSONObject(result);
+                    Gson gson = new Gson();
+                    ABaseService.courseClassificationModel = gson.fromJson(result, CourseClassificationModel.class);
+                    String jsonInfo=gson.toJson(ABaseService.courseClassificationModel); //将对象转换成Json
+                    ABaseService.preferences.edit().putString("category",jsonInfo);
+                    ABaseService.preferences.edit().commit();
+
+                }catch (Exception e){
+                    e.getMessage();
+                }
+
+            }
+
+            @Override
+            public void onError(String error) {
+//                ToastUtils.showError(getActivity(),error);
+            }
+        });
     }
 
     private void doOnNextStep() {

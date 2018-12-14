@@ -52,8 +52,10 @@ public class HomePageFragment extends BaseFragment<HomePagePresenter> implements
 
     {//构造代码块
         titles.add("推荐");
-        for (CourseClassificationModel.DataBean databean :ABaseService.courseClassificationModel.getData()) {
-            titles.add(databean.getType_name());
+        if (ABaseService.courseClassificationModel!=null){
+            for (CourseClassificationModel.DataBean databean :ABaseService.courseClassificationModel.getData()) {
+                titles.add(databean.getType_name());
+            }
         }
 //        titles.add("财经");
 //        titles.add("教育");
@@ -99,7 +101,9 @@ public class HomePageFragment extends BaseFragment<HomePagePresenter> implements
 //         fragmentList.add(FinanceFragment.newInstance());//财经
 //        fragmentList.add(EducationFragment.newInstance());//教育
 //        fragmentList.add(LegalFragment.newInstance());//法律
-//        fragmentList.add(OtherFragment.newInstance());//其他
+//        fragmentList.add(OtherFragment.newInstance());//其他\
+
+
         for (int i = 0; i < titles.size(); i++) {
             if (i==0){
                 fragmentList.add(HomePageListFragment.newInstance(0,""));

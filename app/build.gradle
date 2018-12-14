@@ -69,18 +69,18 @@ android {
         }
     }
 
-    lintOptions {
-        disable 'InvalidPackage'
-        disable "ResourceType"
-        abortOnError false
-    }
+//    lintOptions {
+//        disable 'InvalidPackage'
+//        disable "ResourceType"
+//        abortOnError false
+//    }
 
-    flavorDimensions 'api'
-    android.applicationVariants.all { variant ->
-        variant.outputs.all {
-            outputFileName = "业内_${defaultConfig.versionName}_${channelName}_${releaseTime()}_${buildType.name}.apk"
-        }
-    }
+//    flavorDimensions 'api'
+//    android.applicationVariants.all { variant ->
+//        variant.outputs.all {
+//            outputFileName = "业内_${defaultConfig.versionName}_${channelName}_${releaseTime()}_${buildType.name}.apk"
+//        }
+//    }
 
     sourceSets {
         main {
@@ -101,9 +101,9 @@ dependencies {
     androidTestImplementation rootProject.ext.dependencies["runner"]
     androidTestImplementation rootProject.ext.dependencies["espresso-core"]
     //test
-    debugImplementation rootProject.ext.dependencies["canary-debug"]
-    releaseImplementation rootProject.ext.dependencies["canary-release"]
-    testImplementation rootProject.ext.dependencies["canary-release"]
+//    debugImplementation rootProject.ext.dependencies["canary-debug"]
+//    releaseImplementation rootProject.ext.dependencies["canary-release"]
+//    testImplementation rootProject.ext.dependencies["canary-release"]
     implementation 'com.facebook.stetho:stetho-okhttp3:1.5.0'
     implementation 'com.facebook.stetho:stetho:1.5.0'
 
@@ -153,6 +153,8 @@ dependencies {
     //粘性头部
     implementation project(':library_stickyhead')
     implementation project(':library_badge')
+    implementation project(':dkplayer-ui')
+    implementation project(':dkplayer-java')
 
     //facebook出品的弹力动画库
     //implementation 'com.facebook.rebound:rebound:0.3.8'
@@ -167,6 +169,10 @@ dependencies {
     implementation 'com.qiniu:qiniu-android-sdk:7.3.12'
     implementation 'com.tencent.bugly:crashreport:2.6.6.1'
 
+    //屏幕适配
+    implementation 'com.zhy:autolayout:1.4.5'
+
+    implementation 'com.dou361.ijkplayer:jjdxm-ijkplayer:1.0.5'
     //dagger2
     implementation rootProject.ext.dependencies["dagger2"]
     implementation rootProject.ext.dependencies["dagger2-android"]

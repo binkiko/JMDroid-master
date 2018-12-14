@@ -13,15 +13,21 @@ import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 
 import com.aidingyun.ynlive.R;
+import com.aidingyun.ynlive.app.service.ABaseService;
 import com.aidingyun.ynlive.app.utils.ToastUtils;
 import com.aidingyun.ynlive.app.utils.UpdateVersionUtils;
 import com.aidingyun.ynlive.mvp.contract.Global;
+import com.aidingyun.ynlive.mvp.model.entity.CourseDetailInfo;
 import com.aidingyun.ynlive.mvp.ui.adapter.RecycleAdapter;
+import com.aidingyun.ynlive.mvp.ui.adapter.RecycleItemAdapterCourseList;
+import com.aidingyun.ynlive.mvp.ui.adapter.RecycleItemAdapterTypeCourse;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.vector.update_app.HttpManager;
 
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentSkipListMap;
 
@@ -35,9 +41,12 @@ public class CourseListFragment extends Fragment {
     private RecycleAdapter adapter;
     private int offset = 0;
 
+    private UpdateVersionUtils updateVersionUtils = null;
     RecyclerView recycler_view;
 
-    private UpdateVersionUtils updateVersionUtils = null;
+    RecycleItemAdapterCourseList courseAdapter;
+
+    List<CourseDetailInfo.SectionBean> sectionBeans = new ArrayList<>();
 
     public static CourseListFragment newInstance(String isLoad) {
         Bundle args = new Bundle();
@@ -54,6 +63,11 @@ public class CourseListFragment extends Fragment {
         updateVersionUtils = new UpdateVersionUtils();
         recycler_view = view.findViewById(R.id.recycler_view);
         recycler_view.setLayoutManager(new GridLayoutManager(recycler_view.getContext(), 1, GridLayoutManager.VERTICAL, false));
+        if (ABaseService.courseDetailInfo!=null){
+            sectionBeans = ABaseService.courseDetailInfo.getSection();
+        }
+        courseAdapter = new RecycleItemAdapterCourseList(getActivity(),sectionBeans);
+        recycler_view.setAdapter(courseAdapter);
 //        network_fail = view.findViewById(R.id.network_fail);//网络连接失败布局
         return view;
     }
@@ -67,37 +81,4 @@ public class CourseListFragment extends Fragment {
 //        searchCourseDetail(arguments.getString("courseid"));
     }
 
-
-    private void searchCourseDetail(String courseid) {
-        Map<String, String> reqBody = new ConcurrentSkipListMap<>();
-        reqBody.put("courseid", courseid);
-        updateVersionUtils.postByName(Global.GET_COURSE_DETAIL_SERVICE_NAME, reqBody, new HttpManager.Callback() {
-            @Override
-            public void onResponse(String result) {
-                Log.e("SearchCourseActivity","updateVersionUtils++++++++++++++++"+result);
-                try {
-                    JSONObject jsonObject = new JSONObject(result);
-                    String code = jsonObject.getString("code");
-                    if (code.equals("success")){
-//                        Gson gson = new Gson();
-//                        ABaseService.homeCourseModel = gson.fromJson(result,HomeCourseModel.class);
-//                        rlChannels.setLayoutManager(new GridLayoutManager(rlChannels.getContext(), 2, GridLayoutManager.VERTICAL, false));
-//                        adapter = new RecycleAdapter(getActivity(),ABaseService.homeCourseModel);
-//                        rlChannels.setAdapter(adapter);
-                    }else{
-                        ToastUtils.showError(getActivity(),jsonObject.getString("msg"));
-                    }
-                }catch (Exception e){
-                    e.getMessage();
-                }
-
-            }
-
-            @Override
-            public void onError(String error) {
-                Log.e("SearchCourseActivity","updateVersionUtils++++++++++++++++"+error);
-            }
-        });
-
-    }
 }

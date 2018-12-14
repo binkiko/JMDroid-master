@@ -60,7 +60,7 @@ public class RecycleItemAdapterType4 extends RecyclerView.Adapter<RecyclerView.V
 //        Glide.with(context)
 //                .load(results.get(position).getPhoto())
 //                .into(holder.circle_head);
-        LoadImage.loadNormalImage(context,results.get(position).getPhoto(),holder.circle_head);
+        LoadImage.loadCircleImage(context,results.get(position).getPhoto(),holder.circle_head);
         holder.tv_lable.setText(results.get(position).getReal_name());
         holder.tv_technical.setText(results.get(position).getScore());
         holder.tv_collent.setText(results.get(position).getFans()+"人收藏");

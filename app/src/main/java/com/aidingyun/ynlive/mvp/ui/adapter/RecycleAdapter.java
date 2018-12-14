@@ -161,9 +161,11 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         if (choiceCourseDataBeanList.size()!=0){
             choiceCourseDataBeanList.clear();
         }
-        for (int i = 0; i < 3; i++) {
-            choiceCourseDataBeanList.add(homeCourseModel.getChoice_course_data().get(i));
+        if (homeCourseModel!=null) {
+            for (int i = 0; i < 3; i++) {
+                choiceCourseDataBeanList.add(homeCourseModel.getChoice_course_data().get(i));
 //            choiceCourseDataBeanList.remove(0);
+            }
         }
         final LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false);
         holder.recyclerView.setLayoutManager(linearLayoutManager);
@@ -180,9 +182,10 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         if (choiceCourseDataBeans.size()!=0){
             choiceCourseDataBeans.clear();
         }
-
-        for (int i = 3; i < homeCourseModel.getChoice_course_data().size(); i++) {
-            choiceCourseDataBeans.add(homeCourseModel.getChoice_course_data().get(i));
+        if (homeCourseModel!=null) {
+            for (int i = 3; i < homeCourseModel.getChoice_course_data().size(); i++) {
+                choiceCourseDataBeans.add(homeCourseModel.getChoice_course_data().get(i));
+            }
         }
         holder.item_recyc_type2.setLayoutManager(new FullyGridLayoutManager(holder.item_recyc_type2.getContext(), 2, GridLayoutManager.VERTICAL, false));
         holder.item_recyc_type2.setAdapter(new RecycleItemAdapterChoiceCourse(context, choiceCourseDataBeans));

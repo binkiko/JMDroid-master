@@ -1,70 +1,141 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.zhy.autolayout.AutoRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
     <include android:id="@+id/top" layout="@layout/include_base"/>
-    <ScrollView
-        android:layout_below="@+id/top"
-        android:layout_above="@+id/bottom_linear"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scrollbars="none">
-        <RelativeLayout
+
+        <com.zhy.autolayout.AutoRelativeLayout
+            android:layout_below="@+id/top"
+            android:layout_above="@+id/bottom_linear"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-            <RelativeLayout
+            <com.zhy.autolayout.AutoRelativeLayout
                 android:id="@+id/surfaceview"
                 android:layout_width="match_parent"
+                android:background="@color/material_transparent_41"
                 android:layout_height="224dp">
-                <SurfaceView
+                <com.aidingyun.ynlive.mvp.ui.widget.DefinitionIjkVideoView
+                    android:id="@+id/surface_view"
                     android:layout_width="match_parent"
-                    android:layout_height="224dp"
-                    />
-                <TextView
-                    android:id="@+id/tv_course_next"
+                    android:layout_height="224dp"/>
+                <com.zhy.autolayout.AutoLinearLayout
+                    android:id="@+id/tipTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:text="下节直播:02工程线性管理"
-                    android:textSize="20sp"
-                    android:textColor="@color/material_white"/>
-                <TextView
-                    android:layout_below="@+id/tv_course_next"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:layout_marginTop="@dimen/dp_10"
-                    android:text="8月6日 20:00 预约直播"
-                    android:textSize="16sp"
-                    android:textColor="@color/material_white"/>
-            </RelativeLayout>
+                    android:orientation="vertical"
+                    android:layout_centerInParent="true">
+                    <TextView
+                        android:id="@+id/tv_course_next"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:text="下节直播:02工程线性管理"
+                        android:textSize="20sp"
+                        android:textColor="@color/material_white"/>
+                    <TextView
+                        android:layout_below="@+id/tv_course_next"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="@dimen/dp_10"
+                        android:text="8月6日 20:00 预约直播"
+                        android:textSize="16sp"
+                        android:textColor="@color/material_white"/>
+                </com.zhy.autolayout.AutoLinearLayout>
 
-            <com.androidkun.xtablayout.XTabLayout
-                android:layout_marginTop="-10dp"
-                android:id="@+id/xTablayout"
-                android:layout_below="@+id/surfaceview"
-                android:layout_width="match_parent"
-                android:layout_height="39dp"
-                android:background="@color/colorWhite"
-                app:xTabIndicatorColor="@color/colorAccent"
-                app:xTabIndicatorHeight="2dp"
-                app:tabGravity="fill"
-                app:xTabMode="scrollable"
-                app:xTabSelectedTextColor="@color/colorAccent"
-                app:xTabSelectedTextSize="18sp"
-                app:xTabTextColor="@color/colorPrompt2"
-                app:xTabTextSize="16sp" />
-            <android.support.v4.view.ViewPager
-                android:id="@+id/view_pager"
+            </com.zhy.autolayout.AutoRelativeLayout>
+
+            <com.zhy.autolayout.AutoLinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_below="@+id/xTablayout"/>
-        </RelativeLayout>
-    </ScrollView>
+                android:layout_below="@+id/surfaceview"
+                android:orientation="vertical">
+                <com.androidkun.xtablayout.XTabLayout
+                    android:id="@+id/xTablayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="39dp"
+                    android:background="@color/colorWhite"
+                    app:xTabIndicatorColor="@color/colorAccent"
+                    app:xTabIndicatorHeight="2dp"
+                    app:xTabMode="scrollable"
+                    app:xTabSelectedTextColor="@color/colorAccent"
+                    app:xTabSelectedTextSize="18sp"
+                    app:xTabTextColor="@color/colorPrompt2"
+                    app:xTabTextSize="16sp" />
 
-    <include layout="@layout/include_bottom"/>
+                <android.support.v4.view.ViewPager
+                    android:id="@+id/view_pager"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </com.zhy.autolayout.AutoLinearLayout>
+
+        </com.zhy.autolayout.AutoRelativeLayout>
+
+    <com.zhy.autolayout.AutoLinearLayout
+        android:id="@+id/bottom_linear"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="@color/material_white"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical">
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.1dp"
+            android:layout_above="@+id/bottom_linear"
+            android:background="@color/material_gray"/>
+        <com.zhy.autolayout.AutoLinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:orientation="horizontal"
+            android:layout_alignParentBottom="true">
+
+            <com.zhy.autolayout.AutoRelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+                <CheckBox
+                    android:id="@+id/iv_collect_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:padding="@dimen/dp_10"
+                    style="@style/checkBoxCollectStyle"
+                    android:text="收藏"
+                    android:layout_centerHorizontal="true"
+                    />
+            </com.zhy.autolayout.AutoRelativeLayout>
+
+            <com.zhy.autolayout.AutoRelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+                <CheckBox
+                    android:id="@+id/tv_study"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:padding="@dimen/dp_10"
+                    style="@style/checkBoxStudyStyle"
+                    android:text="想学"
+                    android:layout_centerHorizontal="true"
+                    />
+            </com.zhy.autolayout.AutoRelativeLayout>
+
+            <TextView
+                android:id="@+id/tv_buy_course_btn"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:background="@color/colorAccent"
+                android:text="立即购买"
+                android:textColor="@color/material_white"
+                android:textSize="14sp"
+                android:gravity="center"
+                android:layout_centerInParent="true"/>
+
+        </com.zhy.autolayout.AutoLinearLayout>
+
+    </com.zhy.autolayout.AutoLinearLayout>
 
 
-</RelativeLayout>
+</com.zhy.autolayout.AutoRelativeLayout>
